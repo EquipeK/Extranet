@@ -20,7 +20,7 @@ class MysqlDatabase extends Database{
 
     private function getPDO(){
         if($this->pdo === null){
-            $pdo = new PDO('mysql:dbname=vitrine_rubis;host=localhost', 'root', '');
+            $pdo = new PDO('mysql:dbname=' . $db_name . ';host=' . $db_host . '', $db_user, $db_pass);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->pdo = $pdo;
         }
