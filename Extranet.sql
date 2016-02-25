@@ -8,19 +8,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema extranet_rubis
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema extranet_rubis
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `extranet_rubis` DEFAULT CHARACTER SET utf8 ;
+USE `extranet_rubis` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`department`
+-- Table `extranet_rubis`.`department`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`department` (
+CREATE TABLE IF NOT EXISTS `extranet_rubis`.`department` (
   `id_department` INT NOT NULL,
   `label_department` VARCHAR(64) NULL,
   `creat_at` DATETIME NULL,
@@ -32,9 +32,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`users`
+-- Table `extranet_rubis`.`users`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`users` (
+CREATE TABLE IF NOT EXISTS `extranet_rubis`.`users` (
   `id_user` INT NOT NULL AUTO_INCREMENT,
   `login` VARCHAR(64) NULL,
   `email` VARCHAR(64) NULL,
@@ -49,16 +49,16 @@ CREATE TABLE IF NOT EXISTS `mydb`.`users` (
   INDEX `fk_users_department_idx` (`id_department` ASC),
   CONSTRAINT `fk_users_department`
     FOREIGN KEY (`id_department`)
-    REFERENCES `mydb`.`department` (`id_department`)
+    REFERENCES `extranet_rubis`.`department` (`id_department`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`newsletter`
+-- Table `extranet_rubis`.`newsletter`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`newsletter` (
+CREATE TABLE IF NOT EXISTS `extranet_rubis`.`newsletter` (
   `id_newsletter` INT NOT NULL,
   `content` TEXT NULL,
   `creat_at` DATETIME NULL,
@@ -72,16 +72,16 @@ CREATE TABLE IF NOT EXISTS `mydb`.`newsletter` (
   INDEX `fk_newsletter_department1_idx` (`id_department` ASC),
   CONSTRAINT `id_department`
     FOREIGN KEY (`id_department`)
-    REFERENCES `mydb`.`department` (`id_department`)
+    REFERENCES `extranet_rubis`.`department` (`id_department`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`target`
+-- Table `extranet_rubis`.`target`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`target` (
+CREATE TABLE IF NOT EXISTS `extranet_rubis`.`target` (
   `id_target` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(64) NULL,
   PRIMARY KEY (`id_target`))
@@ -89,9 +89,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`pages`
+-- Table `extranet_rubis`.`pages`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`pages` (
+CREATE TABLE IF NOT EXISTS `extranet_rubis`.`pages` (
   `id_page` INT NOT NULL AUTO_INCREMENT,
   `content` TEXT NULL,
   `slug` VARCHAR(64) NULL,
@@ -109,16 +109,16 @@ CREATE TABLE IF NOT EXISTS `mydb`.`pages` (
   INDEX `fk_pages_target1_idx` (`target_id_target` ASC),
   CONSTRAINT `id_target`
     FOREIGN KEY (`target_id_target`)
-    REFERENCES `mydb`.`target` (`id_target`)
+    REFERENCES `extranet_rubis`.`target` (`id_target`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`tchat`
+-- Table `extranet_rubis`.`tchat`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`tchat` (
+CREATE TABLE IF NOT EXISTS `extranet_rubis`.`tchat` (
   `id_message` INT NOT NULL,
   `message` TEXT NULL,
   `datetime` INT NULL,
@@ -127,16 +127,16 @@ CREATE TABLE IF NOT EXISTS `mydb`.`tchat` (
   INDEX `fk_tchat_department1_idx` (`id_department` ASC),
   CONSTRAINT `id_department_tchat`
     FOREIGN KEY (`id_department`)
-    REFERENCES `mydb`.`department` (`id_department`)
+    REFERENCES `extranet_rubis`.`department` (`id_department`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`status_newsletter`
+-- Table `extranet_rubis`.`status_newsletter`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`status_newsletter` (
+CREATE TABLE IF NOT EXISTS `extranet_rubis`.`status_newsletter` (
   `id_status` INT NOT NULL,
   `label` VARCHAR(32) NULL,
   PRIMARY KEY (`id_status`))
@@ -144,9 +144,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`media_type`
+-- Table `extranet_rubis`.`media_type`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`media_type` (
+CREATE TABLE IF NOT EXISTS `extranet_rubis`.`media_type` (
   `id_media_type` INT NOT NULL AUTO_INCREMENT,
   `media_type` VARCHAR(32) NULL,
   PRIMARY KEY (`id_media_type`))
@@ -154,9 +154,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`email_placeholder`
+-- Table `extranet_rubis`.`email_placeholder`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`email_placeholder` (
+CREATE TABLE IF NOT EXISTS `extranet_rubis`.`email_placeholder` (
   `id_placeholder` INT NOT NULL,
   `placeolder` VARCHAR(64) NULL,
   PRIMARY KEY (`id_placeholder`))
@@ -164,9 +164,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`email`
+-- Table `extranet_rubis`.`email`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`email` (
+CREATE TABLE IF NOT EXISTS `extranet_rubis`.`email` (
   `id_mail` INT NOT NULL,
   `email_emetter` VARCHAR(64) NULL,
   `email_receiver` VARCHAR(64) NULL,
@@ -185,21 +185,21 @@ CREATE TABLE IF NOT EXISTS `mydb`.`email` (
   INDEX `fk_email_email_placeholder1_idx1` (`id_placeholder_receiver` ASC),
   CONSTRAINT `id_placeholder_senders`
     FOREIGN KEY (`id_placeholder_senders`)
-    REFERENCES `mydb`.`email_placeholder` (`id_placeholder`)
+    REFERENCES `extranet_rubis`.`email_placeholder` (`id_placeholder`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `id_placeholder_receiver`
     FOREIGN KEY (`id_placeholder_receiver`)
-    REFERENCES `mydb`.`email_placeholder` (`id_placeholder`)
+    REFERENCES `extranet_rubis`.`email_placeholder` (`id_placeholder`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`media`
+-- Table `extranet_rubis`.`media`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`media` (
+CREATE TABLE IF NOT EXISTS `extranet_rubis`.`media` (
   `id_media` INT NOT NULL AUTO_INCREMENT,
   `type` VARCHAR(255) NULL,
   `src` VARCHAR(255) NULL,
