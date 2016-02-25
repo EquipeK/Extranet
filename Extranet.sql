@@ -116,14 +116,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`table1_copy1_copy1_copy1_copy1`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`table1_copy1_copy1_copy1_copy1` (
-)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `mydb`.`tchat`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`tchat` (
@@ -133,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`tchat` (
   `id_department` INT NOT NULL,
   PRIMARY KEY (`id_message`),
   INDEX `fk_tchat_department1_idx` (`id_department` ASC),
-  CONSTRAINT `id_department`
+  CONSTRAINT `id_department_tchat`
     FOREIGN KEY (`id_department`)
     REFERENCES `mydb`.`department` (`id_department`)
     ON DELETE NO ACTION
