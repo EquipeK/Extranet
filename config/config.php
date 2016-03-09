@@ -1,7 +1,7 @@
 <?php
 return array(
     "db_user" => "root",
-    "db_pass" => "",
+    "db_pass" => "root",
     "db_host" => "localhost",
-    "db_name" => "vitrine_rubis"
+    "db_name" => "extranet_rubis"
 );

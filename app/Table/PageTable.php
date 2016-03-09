@@ -14,9 +14,9 @@ class PageTable extends Table{
      * @return \App\Entity\PostEntity
      */
     public function find($id){
-        return $this->query("
-            SELECT p.id_page, p.title, p.content
-            FROM page_cms p
-            WHERE p.id_page = ?", [$id], true);
+//        return $this->query("
+//            SELECT p.id_page, p.title, p.content
+//            FROM page_cms p
+//            WHERE p.id_page = ?", [$id], true);
     }
 }
