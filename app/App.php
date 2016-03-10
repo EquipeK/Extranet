@@ -24,12 +24,11 @@ class App{
         require ROOT . '/core/Autoloader.php';
         Core\Autoloader::register();
         //regle de routing
-        // Router::prefix(PREFIX,'admin');
+        Router::prefix(PREFIX,'admin');//
         Router::connect('index.php','pages/show/1');
-        Router::connect('','');
-        // outer::connect(':id/categories.html','posts/category/id:([0-9]+)');
-        Router::connect('blog/*','posts/*');
-        Router::connect('cgv.html','pages/show/1');
+        // Router::connect('','admin/users/index');
+        // Router::connect(':id/categories.html','posts/category/id:([0-9]+)');
+        // Router::connect('cgv.html','pages/show/1');
         // Router::connect('login.html','users/login');
         // Router::connect('', 'admin/index');
     }
