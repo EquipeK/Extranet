@@ -25,13 +25,13 @@ class App{
         Core\Autoloader::register();
         //regle de routing
         // Router::prefix(PREFIX,'admin');
-        // Router::connect('index.php','pages/show/1');
-        Router::connect('index.php','departments/list');
+        Router::connect('index.php','pages/show/1');
+        Router::connect('','');
         // outer::connect(':id/categories.html','posts/category/id:([0-9]+)');
         Router::connect('blog/*','posts/*');
         Router::connect('cgv.html','pages/show/1');
         // Router::connect('login.html','users/login');
-        // Router::connect('login.html', 'admin/users');
+        // Router::connect('', 'admin/index');
     }
 
     public function getTable($name){

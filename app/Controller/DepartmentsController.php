@@ -3,14 +3,16 @@
 namespace App\Controller;
 
 use Core\Controller\Controller;
+use Core\HTML\BootstrapForm;
+use Core\HTML\Form;
 
-class DepartmentController extends AppController{
+class DepartmentsController extends AppController{
 
     public function __construct(){
         parent::__construct();
         $this->loadModel('Department');
     }
-    public function list(){
+    public function index(){
     	$errors = false;
         
         if(!empty($_POST)){
@@ -23,8 +25,8 @@ class DepartmentController extends AppController{
                 $errors = true;
             }
         }
-        $form = new BootstrapForm($_POST);
-        $this->render('departments.list', compact('form',"errors"));
+        $form = new BootstrapForm();
+        $this->render('departments.index', compact('form',"errors"));
     }
 
 }

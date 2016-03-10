@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 use Core\HTML\BootstrapForm;
-use \App;
+use Core\HTML\Form;
 class UsersController extends AppController{
 	public function __construct(){
 		parent::__construct();
@@ -15,10 +15,10 @@ class UsersController extends AppController{
             if($auth->login($_POST['email'], $_POST['password'])){
                 
                $_SESSION['email'] = $_POST['email'];
-               $this->redirect(PREFIX.'/pages/index');
+               // $this->redirect(PREFIX.'/pages/index');
             } 
         }
-		$form = new BootstrapForm($_POST);
+		$form = new BootstrapForm();
 		$this->render('admin.users',compact('form'));
 	}
 }
