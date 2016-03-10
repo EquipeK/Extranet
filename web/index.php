@@ -4,7 +4,7 @@ ini_set("display_errors", 1);
 define('WEBROOT',dirname(__FILE__));
 define('ROOT',dirname(WEBROOT));
 define('DS','/');
-define('BASE_URL','http://localhost/Extranet/web/index.php');
+define('BASE_URL','http://extranet2.dev/');
 define('BASE','http://localhost/Extranet/web/');
 define('IMAGE','http://localhost/Extranet/web/img');
 define('NAME',"Rubis");

@@ -13,17 +13,17 @@
     <title>Dashboard Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="http://localhost:8888/Extranet/web/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?= BASE_URL ?>css/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="http://localhost:8888/Extranet/web/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="<?= BASE_URL ?>css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="http://localhost:8888/Extranet/web/css/dashboard.css" rel="stylesheet">
+    <link href="<?= BASE_URL ?>css/dashboard.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="http://localhost:8888/Extranet/web/js/ie-emulation-modes-warning.js"></script>
+    <script src="<?= BASE_URL ?>js/ie-emulation-modes-warning.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -64,14 +64,14 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-            <li><a href="http://localhost:8888/Extranet/web/index.php/departments/index">Categorie</a></li>
+            <li><a href="h<?= BASE_URL ?>departments/index">Categorie</a></li>
             <li><a href="#">Analytics</a></li>
             <li><a href="#">Export</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">Dashboard</h1>
-          
+
           <?= $content; ?>
 
         </div>
@@ -83,10 +83,10 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')</script>
-    <script src="http://localhost:8888/Extranet/web/js/bootstrap.min.js"></script>
+    <script src="<?= BASE_URL ?>js/bootstrap.min.js"></script>
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-    <script src="http://localhost:8888/Extranet/web/js/holder.min.js"></script>
+    <script src="<?= BASE_URL ?>js/holder.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="http://localhost:8888/Extranet/web/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="<?= BASE_URL ?>js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>
