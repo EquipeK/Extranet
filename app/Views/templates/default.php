@@ -48,7 +48,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">Dashboard</a></li>
-            <li><a href="http://localhost:8888/Extranet/web/index.php/admin/users/index">Admin</a></li>
+            <li><a href="<?= BASE_URL ?>admin/users/index">Admin</a></li>
             <li><a href="#">Profile</a></li>
             <li><a href="#">Help</a></li>
           </ul>
@@ -64,7 +64,7 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-            <li><a href="h<?= BASE_URL ?>departments/index">Categorie</a></li>
+            <li><a href="<?= BASE_URL ?>admin/departments/index">Départements</a></li>
             <li><a href="#">Analytics</a></li>
             <li><a href="#">Export</a></li>
           </ul>

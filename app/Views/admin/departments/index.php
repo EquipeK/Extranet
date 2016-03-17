@@ -3,7 +3,7 @@
         Identifiants incorrects
     </div>
 <?php endif; ?>
-<form method="post">
-    <?= $form->input('email', 'Libellé',null/*['onblur' => 'verifNom(this)']*/); ?>
+<form method="get" action="<?= BASE_URL ?>admin/departments/add">
+    <?= $form->input('label_department', 'Libellé'); ?>
     <button class="btn btn-primary">Envoyer</button>
 </form>

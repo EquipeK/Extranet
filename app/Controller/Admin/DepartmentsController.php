@@ -29,4 +29,22 @@ class DepartmentsController extends AppController{
         $this->render('admin.departments.index', compact('form',"errors"));
     }
 
+    public function add(){
+        $label_department = $_GET['label_department'];
+        $creat_at = date("Y-m-d H:i:s");
+        $edit_at = $creat_at;
+        $field = array(
+            'label_department'=>$label_department,
+            'creat_at'=>$creat_at,
+            'edit_at'=> $edit_at,
+            'edit_by'=>1);
+        $department = $this->Department->create($field);
+        $this->index();
+    }
+
+    public function show(){
+        $departments = $this->Department->all();
+        $this->render('admin.users.index', compact('departments'));
+    }
+
 }
