@@ -19,6 +19,23 @@ class UsersController extends AppController{
 	}
 
 	public function add(){
-		var_dump($_GET);
+		$email = $_GET['email'];
+		$firstname = $_GET['firstname'];
+		$lastname = $_GET['lastname'];
+		$password = sha1($_GET['password']);
+		$id_department = $_GET['department'];
+		$login = $email;
+		$edit_at = date("Y-m-d H:i:s");
+		$field = array(
+			'login'=>$login,
+			'email'=>$email,
+			'lastname'=>$lastname,
+			'firstname'=>$firstname,
+			'password'=>$password,
+			'edit_at'=>$edit_at,
+			'id_department'=>$id_department
+		);
+		$user = $this->User->create($field);
+
 	}
 }

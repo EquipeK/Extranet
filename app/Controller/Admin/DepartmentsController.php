@@ -37,7 +37,8 @@ class DepartmentsController extends AppController{
             'label_department'=>$label_department,
             'creat_at'=>$creat_at,
             'edit_at'=> $edit_at,
-            'edit_by'=>1);
+            'edit_by'=>1
+        );
         $department = $this->Department->create($field);
         $this->index();
     }
