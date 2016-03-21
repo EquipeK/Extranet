@@ -19,7 +19,6 @@ class AppController extends Controller{
 
     public function setTemplate($template){
     	$this->template = $template;
-
     }
 
 }

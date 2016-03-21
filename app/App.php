@@ -25,7 +25,7 @@ class App{
         Core\Autoloader::register();
         //regle de routing
         Router::prefix(PREFIX,'admin');//
-        Router::connect('index.php','pages/show/1');
+        Router::connect('index.php','login/index');
         // Router::connect('','admin/users/index');
         // Router::connect(':id/categories.html','posts/category/id:([0-9]+)');
         // Router::connect('cgv.html','pages/show/1');
