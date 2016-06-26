@@ -24,7 +24,7 @@ class MediaController extends Controller
 
         $media = $em->getRepository('AdminAdminBundle:Media')->findAll();
 
-        return $this->render('media/index.html.twig', array(
+        return $this->render('AdminAdminBundle:Media:index.html.twig', array(
             'media' => $media,
         ));
     }
@@ -36,7 +36,7 @@ class MediaController extends Controller
     public function newAction(Request $request)
     {
         $medium = new Media();
-        $form = $this->createForm('Admin\AdminBundle\Form\MediaType', $medium);
+        $form = $this->createForm(MediaType::class, $medium);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -47,7 +47,7 @@ class MediaController extends Controller
             return $this->redirectToRoute('media_show', array('id' => $medium->getId()));
         }
 
-        return $this->render('media/new.html.twig', array(
+        return $this->render('AdminAdminBundle:Media:new.html.twig', array(
             'medium' => $medium,
             'form' => $form->createView(),
         ));
@@ -61,7 +61,7 @@ class MediaController extends Controller
     {
         $deleteForm = $this->createDeleteForm($medium);
 
-        return $this->render('media/show.html.twig', array(
+        return $this->render('AdminAdminBundle:Media:show.html.twig', array(
             'medium' => $medium,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -74,7 +74,7 @@ class MediaController extends Controller
     public function editAction(Request $request, Media $medium)
     {
         $deleteForm = $this->createDeleteForm($medium);
-        $editForm = $this->createForm('Admin\AdminBundle\Form\MediaType', $medium);
+        $editForm = $this->createForm(MediaType::class, $medium);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -85,7 +85,7 @@ class MediaController extends Controller
             return $this->redirectToRoute('media_edit', array('id' => $medium->getId()));
         }
 
-        return $this->render('media/edit.html.twig', array(
+        return $this->render('AdminAdminBundle:Media:edit.html.twig', array(
             'medium' => $medium,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

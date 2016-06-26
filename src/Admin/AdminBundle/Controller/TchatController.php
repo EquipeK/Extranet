@@ -24,7 +24,7 @@ class TchatController extends Controller
 
         $tchats = $em->getRepository('AdminAdminBundle:Tchat')->findAll();
 
-        return $this->render('tchat/index.html.twig', array(
+        return $this->render('AdminAdminBundle:Tchat:index.html.twig', array(
             'tchats' => $tchats,
         ));
     }
@@ -36,7 +36,7 @@ class TchatController extends Controller
     public function newAction(Request $request)
     {
         $tchat = new Tchat();
-        $form = $this->createForm('Admin\AdminBundle\Form\TchatType', $tchat);
+        $form = $this->createForm(TchatType::class, $tchat);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -47,7 +47,7 @@ class TchatController extends Controller
             return $this->redirectToRoute('tchat_show', array('id' => $tchat->getId()));
         }
 
-        return $this->render('tchat/new.html.twig', array(
+        return $this->render('AdminAdminBundle:Tchat:new.html.twig', array(
             'tchat' => $tchat,
             'form' => $form->createView(),
         ));
@@ -61,7 +61,7 @@ class TchatController extends Controller
     {
         $deleteForm = $this->createDeleteForm($tchat);
 
-        return $this->render('tchat/show.html.twig', array(
+        return $this->render('AdminAdminBundle:Tchat:show.html.twig', array(
             'tchat' => $tchat,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -74,7 +74,7 @@ class TchatController extends Controller
     public function editAction(Request $request, Tchat $tchat)
     {
         $deleteForm = $this->createDeleteForm($tchat);
-        $editForm = $this->createForm('Admin\AdminBundle\Form\TchatType', $tchat);
+        $editForm = $this->createForm(TchatType::class, $tchat);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -85,7 +85,7 @@ class TchatController extends Controller
             return $this->redirectToRoute('tchat_edit', array('id' => $tchat->getId()));
         }
 
-        return $this->render('tchat/edit.html.twig', array(
+        return $this->render('AdminAdminBundle:Tchat:edit.html.twig', array(
             'tchat' => $tchat,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

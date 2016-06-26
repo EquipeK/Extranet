@@ -1,7 +1,28 @@
+admin_admin_homepage:
+    path:     /
+    defaults: { _controller: AdminAdminBundle:Default:index }
+
+
 admin_admin_department:
     resource: "@AdminAdminBundle/Resources/config/routing/department.yml"
     prefix:   /department
 
-admin_admin_homepage:
-    path:     /
-    defaults: { _controller: AdminAdminBundle:Default:index }
+admin_admin_email:
+    resource: "@AdminAdminBundle/Resources/config/routing/email.yml"
+    prefix:   /email
+
+admin_admin_media:
+    resource: "@AdminAdminBundle/Resources/config/routing/media.yml"
+    prefix:   /media
+
+admin_admin_newsletter:
+    resource: "@AdminAdminBundle/Resources/config/routing/newsletter.yml"
+    prefix:   /newsletter
+
+admin_admin_pages:
+    resource: "@AdminAdminBundle/Resources/config/routing/pages.yml"
+    prefix:   /pages
+
+admin_admin_tchat:
+    resource: "@AdminAdminBundle/Resources/config/routing/tchat.yml"
+    prefix:   /tchat

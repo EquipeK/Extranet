@@ -24,7 +24,7 @@ class EmailController extends Controller
 
         $emails = $em->getRepository('AdminAdminBundle:Email')->findAll();
 
-        return $this->render('email/index.html.twig', array(
+        return $this->render('AdminAdminBundle:Email:index.html.twig', array(
             'emails' => $emails,
         ));
     }
@@ -36,7 +36,7 @@ class EmailController extends Controller
     public function newAction(Request $request)
     {
         $email = new Email();
-        $form = $this->createForm('Admin\AdminBundle\Form\EmailType', $email);
+        $form = $this->createForm(EmailType::class, $email);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -47,7 +47,7 @@ class EmailController extends Controller
             return $this->redirectToRoute('email_show', array('id' => $email->getId()));
         }
 
-        return $this->render('email/new.html.twig', array(
+        return $this->render('AdminAdminBundle:Email:new.html.twig', array(
             'email' => $email,
             'form' => $form->createView(),
         ));
@@ -61,7 +61,7 @@ class EmailController extends Controller
     {
         $deleteForm = $this->createDeleteForm($email);
 
-        return $this->render('email/show.html.twig', array(
+        return $this->render('AdminAdminBundle:Email:show.html.twig', array(
             'email' => $email,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -74,7 +74,7 @@ class EmailController extends Controller
     public function editAction(Request $request, Email $email)
     {
         $deleteForm = $this->createDeleteForm($email);
-        $editForm = $this->createForm('Admin\AdminBundle\Form\EmailType', $email);
+        $editForm = $this->createForm(EmailType::class, $email);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -85,7 +85,7 @@ class EmailController extends Controller
             return $this->redirectToRoute('email_edit', array('id' => $email->getId()));
         }
 
-        return $this->render('email/edit.html.twig', array(
+        return $this->render('AdminAdminBundle:Email:edit.html.twig', array(
             'email' => $email,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

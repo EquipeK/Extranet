@@ -24,7 +24,7 @@ class DepartmentController extends Controller
 
         $departments = $em->getRepository('AdminAdminBundle:Department')->findAll();
 
-        return $this->render('department/index.html.twig', array(
+        return $this->render('AdminAdminBundle:Department:index.html.twig', array(
             'departments' => $departments,
         ));
     }
@@ -36,7 +36,7 @@ class DepartmentController extends Controller
     public function newAction(Request $request)
     {
         $department = new Department();
-        $form = $this->createForm('Admin\AdminBundle\Form\DepartmentType', $department);
+        $form = $this->createForm(DepartmentType::class, $department);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -47,7 +47,7 @@ class DepartmentController extends Controller
             return $this->redirectToRoute('department_show', array('id' => $department->getId()));
         }
 
-        return $this->render('department/new.html.twig', array(
+        return $this->render('AdminAdminBundle:Department:new.html.twig', array(
             'department' => $department,
             'form' => $form->createView(),
         ));
@@ -61,7 +61,7 @@ class DepartmentController extends Controller
     {
         $deleteForm = $this->createDeleteForm($department);
 
-        return $this->render('department/show.html.twig', array(
+        return $this->render('AdminAdminBundle:Department::show.html.twig', array(
             'department' => $department,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -74,7 +74,7 @@ class DepartmentController extends Controller
     public function editAction(Request $request, Department $department)
     {
         $deleteForm = $this->createDeleteForm($department);
-        $editForm = $this->createForm('Admin\AdminBundle\Form\DepartmentType', $department);
+        $editForm = $this->createForm(DepartmentType::class, $department);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -85,7 +85,7 @@ class DepartmentController extends Controller
             return $this->redirectToRoute('department_edit', array('id' => $department->getId()));
         }
 
-        return $this->render('department/edit.html.twig', array(
+        return $this->render('AdminAdminBundle:Department:edit.html.twig', array(
             'department' => $department,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

@@ -24,7 +24,7 @@ class NewsletterController extends Controller
 
         $newsletters = $em->getRepository('AdminAdminBundle:Newsletter')->findAll();
 
-        return $this->render('newsletter/index.html.twig', array(
+        return $this->render('AdminAdminBundle:Newsletter:index.html.twig', array(
             'newsletters' => $newsletters,
         ));
     }
@@ -36,7 +36,7 @@ class NewsletterController extends Controller
     public function newAction(Request $request)
     {
         $newsletter = new Newsletter();
-        $form = $this->createForm('Admin\AdminBundle\Form\NewsletterType', $newsletter);
+        $form = $this->createForm(NewsletterType::class, $newsletter);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -47,7 +47,7 @@ class NewsletterController extends Controller
             return $this->redirectToRoute('newsletter_show', array('id' => $newsletter->getId()));
         }
 
-        return $this->render('newsletter/new.html.twig', array(
+        return $this->render('AdminAdminBundle:Newsletter:new.html.twig', array(
             'newsletter' => $newsletter,
             'form' => $form->createView(),
         ));
@@ -61,7 +61,7 @@ class NewsletterController extends Controller
     {
         $deleteForm = $this->createDeleteForm($newsletter);
 
-        return $this->render('newsletter/show.html.twig', array(
+        return $this->render('AdminAdminBundle:Newsletter:show.html.twig', array(
             'newsletter' => $newsletter,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -74,7 +74,7 @@ class NewsletterController extends Controller
     public function editAction(Request $request, Newsletter $newsletter)
     {
         $deleteForm = $this->createDeleteForm($newsletter);
-        $editForm = $this->createForm('Admin\AdminBundle\Form\NewsletterType', $newsletter);
+        $editForm = $this->createForm(NewsletterType::class, $newsletter);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -85,7 +85,7 @@ class NewsletterController extends Controller
             return $this->redirectToRoute('newsletter_edit', array('id' => $newsletter->getId()));
         }
 
-        return $this->render('newsletter/edit.html.twig', array(
+        return $this->render('AdminAdminBundle:Newsletter:edit.html.twig', array(
             'newsletter' => $newsletter,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
