@@ -1,3 +1,7 @@
+admin_admin_department:
+    resource: "@AdminAdminBundle/Resources/config/routing/department.yml"
+    prefix:   /department
+
 admin_admin_homepage:
     path:     /
     defaults: { _controller: AdminAdminBundle:Default:index }
