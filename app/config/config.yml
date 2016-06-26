@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    # - { resource: doctrine_extensions.yml }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -62,6 +63,24 @@ doctrine:
         auto_generate_proxy_classes: "%kernel.debug%"
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
+        mappings:
+            translatable:
+                type: annotation
+                alias: Gedmo
+                prefix: Gedmo\Translatable\Entity
+            # make sure vendor library location is correct
+                dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
+            loggable:
+                type: annotation
+                alias: Gedmo
+                prefix: Gedmo\Loggable\Entity
+                dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity"
+            tree:
+                type: annotation
+                alias: Gedmo
+                prefix: Gedmo\Tree\Entity
+                dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity"
+
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -70,3 +89,66 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+fos_user:
+    db_driver:     orm                       # Le type de BDD à utiliser, nous utilisons l'ORM Doctrine depuis le début
+    firewall_name: main                      # Le nom du firewall derrière lequel on utilisera ces utilisateurs
+    user_class:    Admin\UsersBundle\Entity\Users # La classe de l'entité User que nous utilisons
+
+liip_imagine:
+    resolvers:
+       default:
+          web_path:
+              web_root: %kernel.root_dir%/../www
+              cache_prefix: media/cache
+    loaders:
+        default:
+            filesystem:
+                data_root: %kernel.root_dir%/../www/
+
+    filter_sets:
+        cache: ~
+        profil_avatar:
+            quality: 90
+            filters:
+                thumbnail: { size: [100, 100], mode: outbound }
+        classe_image:
+            quality: 90
+            filters:
+                thumbnail: { size: [500, 200], mode: outbound }
+
+ivory_ck_editor:
+    default_config:                     my_custom_config    # Utiliser par defaut la configuration my_custom_config
+    styles:         # Configuration des styles personnalisables il sufit d'ajouter une class propre au theme de base
+        my_styles:
+            - { name: "em plus", element: "em",  attributes: { class: "btn color-1 size-2 hover-1" }}
+            - { name: "em camera", element: "em",  attributes: { class: "fa fa-camera" }}
+    configs:
+        my_custom_config:
+            language:                   %locale%
+            toolbar:                    full               # Charger la toolbar tollbar_1 (voir plus bas)
+            enterMode :                 CKEDITOR.ENTER_BR  # permet d'utiliser br pour passer à la ligne
+            shiftEnterMode:             CKEDITOR.ENTER_P   #<P> avec shit + enter
+            #filebrowserBrowseRoute:     elfinder
+            #filebrowserBrowseRouteParameters:
+                #instance: ckeditor
+            stylesSet:                  my_styles           # Chargement des styles personnalisables my_styles (voir plus bas)
+            uiColor:                    "#45748f"           # Couleur de fond de l'interface
+            height:                     '300px'             # Hauteur par défaut
+            # Utiliser les styles css suivants dans le contenu de l'éditeur. Permet de voir le rendu en temps réeem
+            contentsCss:                ['bundles/front/css/style.css']
+        front_config:
+            language:                   %locale%
+            toolbar:                    basic
+            enterMode :                 CKEDITOR.ENTER_BR  # permet d'utiliser br pour passer à la ligne
+            shiftEnterMode:             CKEDITOR.ENTER_P   #<P> avec shit + enter
+            uiColor:                    "#BB3116"
+        front_semi_config:
+            language:                   %locale%
+            toolbar:                    [ [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ], [ 'Find','Replace','-','SelectAll','-','SpellChecker', 'Scayt' ], "/", [ 'Bold','Italic','Underline','Strike', 'Blockquote','Subscript','Superscript','-','RemoveFormat' ], [ 'NumberedList','BulletedList','-','Outdent','Indent','-','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ], [ 'Link','Unlink','Anchor' ], [ 'pbckcode', 'Image', 'Video', 'Table','SpecialChar'], '/', [ 'Format','Font','FontSize' ], [ 'TextColor','BGColor' ], [ 'RemoveFormat' ], [ 'Maximize' ] ]
+            enterMode :                 CKEDITOR.ENTER_BR  # permet d'utiliser br pour passer à la ligne
+            shiftEnterMode:             CKEDITOR.ENTER_P   #<P> avec shit + enter
+            #filebrowserBrowseRoute:     elfinder
+            #filebrowserBrowseRouteParameters:
+                #instance: front_ckeditor
+            uiColor:                    "#BB3116"

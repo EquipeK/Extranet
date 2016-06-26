@@ -18,7 +18,12 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new Admin\AdminBundle\AdminAdminBundle(),
             new Front\FrontBundle\FrontFrontBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
             new Admin\UsersBundle\AdminUsersBundle(),
+            new Liip\ImagineBundle\LiipImagineBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
