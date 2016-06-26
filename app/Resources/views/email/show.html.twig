@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Email</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ email.id }}</td>
+            </tr>
+            <tr>
+                <th>Emailemetter</th>
+                <td>{{ email.emailEmetter }}</td>
+            </tr>
+            <tr>
+                <th>Emailreceiver</th>
+                <td>{{ email.emailReceiver }}</td>
+            </tr>
+            <tr>
+                <th>Subject</th>
+                <td>{{ email.subject }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ email.content }}</td>
+            </tr>
+            <tr>
+                <th>Dateemailsend</th>
+                <td>{% if email.dateEmailSend %}{{ email.dateEmailSend|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Dateemailreceive</th>
+                <td>{% if email.dateEmailReceive %}{{ email.dateEmailReceive|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Delatfrom</th>
+                <td>{% if email.delAtFrom %}{{ email.delAtFrom|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Delatto</th>
+                <td>{% if email.delAtTo %}{{ email.delAtTo|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('email_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('email_edit', { 'id': email.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

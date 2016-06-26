@@ -1,0 +1,24 @@
+tchat_index:
+    path:     /
+    defaults: { _controller: "AdminAdminBundle:Tchat:index" }
+    methods:  GET
+
+tchat_show:
+    path:     /{id}/show
+    defaults: { _controller: "AdminAdminBundle:Tchat:show" }
+    methods:  GET
+
+tchat_new:
+    path:     /new
+    defaults: { _controller: "AdminAdminBundle:Tchat:new" }
+    methods:  [GET, POST]
+
+tchat_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AdminAdminBundle:Tchat:edit" }
+    methods:  [GET, POST]
+
+tchat_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AdminAdminBundle:Tchat:delete" }
+    methods:  DELETE

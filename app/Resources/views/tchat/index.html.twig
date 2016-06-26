@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Tchat list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Message</th>
+                <th>Datetime</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tchat in tchats %}
+            <tr>
+                <td><a href="{{ path('tchat_show', { 'id': tchat.id }) }}">{{ tchat.id }}</a></td>
+                <td>{{ tchat.message }}</td>
+                <td>{% if tchat.datetime %}{{ tchat.datetime|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('tchat_show', { 'id': tchat.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('tchat_edit', { 'id': tchat.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('tchat_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

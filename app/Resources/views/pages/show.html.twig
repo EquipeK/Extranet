@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Pages</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ page.id }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ page.content }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ page.slug }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ page.title }}</td>
+            </tr>
+            <tr>
+                <th>Online</th>
+                <td>{% if page.online %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Creatat</th>
+                <td>{% if page.creatAt %}{{ page.creatAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Editat</th>
+                <td>{% if page.editAt %}{{ page.editAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Delat</th>
+                <td>{% if page.delAt %}{{ page.delAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('pages_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('pages_edit', { 'id': page.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

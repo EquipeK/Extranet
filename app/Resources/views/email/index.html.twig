@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Email list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Emailemetter</th>
+                <th>Emailreceiver</th>
+                <th>Subject</th>
+                <th>Content</th>
+                <th>Dateemailsend</th>
+                <th>Dateemailreceive</th>
+                <th>Delatfrom</th>
+                <th>Delatto</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for email in emails %}
+            <tr>
+                <td><a href="{{ path('email_show', { 'id': email.id }) }}">{{ email.id }}</a></td>
+                <td>{{ email.emailEmetter }}</td>
+                <td>{{ email.emailReceiver }}</td>
+                <td>{{ email.subject }}</td>
+                <td>{{ email.content }}</td>
+                <td>{% if email.dateEmailSend %}{{ email.dateEmailSend|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if email.dateEmailReceive %}{{ email.dateEmailReceive|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if email.delAtFrom %}{{ email.delAtFrom|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if email.delAtTo %}{{ email.delAtTo|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('email_show', { 'id': email.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('email_edit', { 'id': email.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('email_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
